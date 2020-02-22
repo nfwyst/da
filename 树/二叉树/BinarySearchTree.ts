@@ -10,34 +10,44 @@ class BinarySearchTree {
   public root: TreeNode | null = null
 
   // 插入子树
-  public insert(value: any) {
+  public insert(value: any): BinarySearchTree {
     const node = new TreeNode(value)
     if (!this.root) this.root = node
     else {
       let currentNode = this.root
-      while (currentNode.left && currentNode.right) {
+      while (true) {
         if (currentNode.value <= value) {
+          if (!currentNode.right) {
+            currentNode.right = node
+            return this
+          }
           currentNode = currentNode.right
         } else {
+          if (!currentNode.left) {
+            currentNode.left = node
+            return this
+          }
           currentNode = currentNode.left
         }
       }
-      if (currentNode.value <= value) {
-        currentNode.right = node
-      } else {
-        currentNode.left = node
-      }
     }
+    return this
   }
 
-  // TODO
-  public lookup() { }
+  public lookup(value: any): void | TreeNode {
+    if (!this.root) return
+    let currentNode: TreeNode | null = this.root
+    while (currentNode) {
+      if (value < currentNode.value) {
+        currentNode = currentNode.left
+      } else if (value > currentNode.value) {
+        currentNode = currentNode.right
+      } else {
+        return currentNode
+      }
+    }
+    return
+  }
 }
 
-const tree = new BinarySearchTree()
-tree.insert(100)
-console.log(tree)
-tree.insert(19)
-console.log(tree)
-tree.insert(198)
-console.log(tree)
+export default BinarySearchTree
