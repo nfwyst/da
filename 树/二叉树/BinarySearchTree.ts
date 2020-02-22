@@ -87,6 +87,22 @@ class BinarySearchTree {
           }
         } else if (currentNode.right.left === null) {
           // 当前节点有右子树， 但右子树没有左子树
+          if (parentNode === null) {
+            // 如果没有父节点, 当前节点的左子树作为新的根
+            this.root = currentNode.left
+          } else {
+            // 当前节点的左子树作为当前节点右子树的左子树
+            currentNode.right.left = currentNode.left
+            if (currentNode.value < parentNode.value) {
+              // 当前节点是父节点的左子树
+              // 当前节点的右子树作为父节点的左子树
+              parentNode.left = currentNode.right
+            } else {
+              // 当前节点是父节点的右子树
+              // 当前节点的右子树作为父节点的右子树
+              parentNode.right = currentNode.right
+            }
+          }
         } else {
           // 当前节点有右子树， 且右子树有左子树
         }
