@@ -55,19 +55,36 @@ class BinarySearchTree {
     // 如果是空树则返回
     if (!this.root) return
     // 当前节点
-    let currentNode = this.root
+    let currentNode: TreeNode | null = this.root
     // 父节点
-    let parentNode = null
+    let parentNode: TreeNode | null = null
     // 如果有节点可处理
     while (currentNode) {
       if (value < currentNode.value) {
-        // 要删除的节点在左侧
+        // 要删除的节点在左子树部分
+        parentNode = currentNode
+        currentNode = currentNode.left
       } else if (value > currentNode.value) {
-        // 要删除的节点在右侧
+        // 要删除的节点在右子树部分
+        parentNode = currentNode
+        currentNode = currentNode.right
       } else {
         // 当前节点需要被删除
         if (currentNode.right === null) {
           // 当前节点没有右子树
+          if (parentNode === null) {
+            // 如果没有父节点, 当前节点的左子树作为新的根
+            this.root = currentNode.left
+          } else {
+            // 如果有父节点
+            if (currentNode.value < parentNode.value) {
+              // 如果当前节点是父节点的左子树, 当前节点的左子树作为父节点新的左子树
+              parentNode.left = currentNode.left
+            } else {
+              // 如果当前节点是父节点的右子树, 当前节点的左子树作为父节点新的右子树
+              parentNode.right = currentNode.left
+            }
+          }
         } else if (currentNode.right.left === null) {
           // 当前节点有右子树， 但右子树没有左子树
         } else {
