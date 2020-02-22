@@ -34,6 +34,7 @@ class BinarySearchTree {
     return this
   }
 
+  // 查找节点
   public lookup(value: any): void | TreeNode {
     if (!this.root) return
     let currentNode: TreeNode | null = this.root
