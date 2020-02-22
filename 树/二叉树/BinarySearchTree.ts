@@ -50,7 +50,7 @@ class BinarySearchTree {
     return
   }
 
-  // 删除节点 TODO
+  // 删除节点
   public remove(value: any): boolean {
     // 如果是空树则返回
     if (!this.root) return
