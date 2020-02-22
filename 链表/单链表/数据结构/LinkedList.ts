@@ -79,7 +79,7 @@ class LinkedList {
   }
 
   // 翻转链表
-  reverse() {
+  public reverse(): NodeItem {
     if (!this.head.next) return this.head
     let first = this.head
     this.tail = this.head
@@ -92,6 +92,7 @@ class LinkedList {
     }
     this.head.next = null
     this.head = first
+    return this.head
   }
 }
 
