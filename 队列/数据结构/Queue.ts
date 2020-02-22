@@ -33,6 +33,7 @@ class Queue {
   public dequeue(): any {
     const item = this.first
     if (!item || !this.first) return item
+    if (this.first === this.last) this.last = null
     this.first = this.first.next
     this.length--
     return item.value
