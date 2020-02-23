@@ -53,7 +53,7 @@ class BinarySearchTree {
   // 删除节点
   public remove(value: any): boolean {
     // 如果是空树则返回
-    if (!this.root) return
+    if (!this.root) return false
     // 当前节点
     let currentNode: TreeNode | null = this.root
     // 父节点
