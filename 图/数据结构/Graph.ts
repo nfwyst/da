@@ -4,15 +4,17 @@ class Graph {
   public adjacentList: { [key: string]: any } = {}
 
   // 添加顶点
-  // TODO
-  addVertex(node) {
-
+  addVertex(node: string): Graph {
+    this.adjacentList[node] = []
+    this.numberOfNodes++
+    return this
   }
 
   // 添加边
-  // TODO
-  addEdge(node1, node2) {
-
+  addEdge(node1: string, node2: string): Graph {
+    this.adjacentList[node1].push(node2)
+    this.adjacentList[node2].push(node1)
+    return this
   }
 
   showConnections() {
@@ -29,21 +31,23 @@ class Graph {
   }
 }
 
-const graph = new Graph()
-graph.addVertex('0')
-graph.addVertex('1')
-graph.addVertex('2')
-graph.addVertex('3')
-graph.addVertex('4')
-graph.addVertex('5')
-graph.addVertex('6')
-graph.addEdge('3', '1')
-graph.addEdge('3', '4')
-graph.addEdge('4', '2')
-graph.addEdge('4', '5')
-graph.addEdge('1', '2')
-graph.addEdge('1', '0')
-graph.addEdge('0', '2')
-graph.addEdge('6', '5')
+// const graph = new Graph()
+// graph.addVertex('0')
+// graph.addVertex('1')
+// graph.addVertex('2')
+// graph.addVertex('3')
+// graph.addVertex('4')
+// graph.addVertex('5')
+// graph.addVertex('6')
+// graph.addEdge('3', '1')
+// graph.addEdge('3', '4')
+// graph.addEdge('4', '2')
+// graph.addEdge('4', '5')
+// graph.addEdge('1', '2')
+// graph.addEdge('1', '0')
+// graph.addEdge('0', '2')
+// graph.addEdge('6', '5')
 
-graph.showConnections()
+// graph.showConnections()
+
+export default Graph
